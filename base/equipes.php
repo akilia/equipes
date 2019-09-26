@@ -113,7 +113,7 @@ function equipes_declarer_tables_objets_sql($tables) {
 		 #'date' => '',
 		'champs_editables'  => array('prenom', 'nom', 'fonction', 'bio', 'email', 'telephone', 'linkedin', 'facebook', 'id_equipe'),
 		'champs_versionnes' => array(),
-		'rechercher_champs' => array("prenom" => 3, "nom" => 8, "fonction" => 5)),
+		'rechercher_champs' => array("prenom" => 3, "nom" => 8, "fonction" => 5),
 		'tables_jointures'  => array(),
 		'statut_textes_instituer' => array(
 			'prepa'    => 'texte_statut_en_cours_redaction',
