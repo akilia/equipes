@@ -1,0 +1,56 @@
+[(#AUTORISER{voir,equipe,#ID_EQUIPE}|sinon_interdire_acces)]
+[(#SET{url_voir,#VAL{equipe}|objet_info{url_voir}})]
+[(#SET{url_edit,#VAL{equipe}|objet_info{url_edit}})]
+<BOUCLE_equipe(EQUIPES){id_equipe}{statut==.*}{si #ENV{exec}|=={#GET{url_voir}}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,equipe,#ID_EQUIPE})
+		[(#ID_EQUIPE|afficher_qui_edite{equipe}|non)
+			[(#URL_ECRIRE{#GET{url_edit},id_equipe=#ID_EQUIPE}|icone_verticale{<:equipe:icone_modifier_equipe:>,equipe,edit,right ajax preload})]
+		]
+		[(#ID_EQUIPE|afficher_qui_edite{equipe}|oui)
+			[(#URL_ECRIRE{#GET{url_edit},id_equipe=#ID_EQUIPE}|icone_verticale{#ID_EQUIPE|afficher_qui_edite{equipe},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{equipe-24.png}|balise_img{equipe,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{equipe,#ID_EQUIPE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/equipe,id=#ID_EQUIPE,id_equipe=#ID_EQUIPE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,equipe,#ID_EQUIPE})
+	[(#ID_EQUIPE|afficher_qui_edite{equipe}|non)
+		[(#URL_ECRIRE{#GET{url_edit},id_equipe=#ID_EQUIPE}|icone_verticale{<:equipe:icone_modifier_equipe:>,equipe,edit,right ajax preload})]
+	]
+	[(#ID_EQUIPE|afficher_qui_edite{equipe}|oui)
+		[(#URL_ECRIRE{#GET{url_edit},id_equipe=#ID_EQUIPE}|icone_verticale{#ID_EQUIPE|afficher_qui_edite{equipe},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,equipe,id,#ID_EQUIPE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+
+
+#SET{enfants,''}
+[(#VAL{prive/objets/contenu/equipe-enfants}|trouver_fond|oui)
+	[(#SET{enfants,[(#INCLURE{fond=prive/objets/contenu/equipe-enfants,id_equipe,env})]})]
+]
+[(#PIPELINE{affiche_enfants,[(#ARRAY{args,#ARRAY{exec,equipe,id_equipe,#ID_EQUIPE,objet,equipe,id_objet,#ID_EQUIPE},data,#GET{enfants}})]})]
+
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_equipe>
+[(#ENV**{exec}|=={#GET{url_edit}}|?{#INCLURE{fond=prive/squelettes/contenu/#GET{url_edit},redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_equipe>

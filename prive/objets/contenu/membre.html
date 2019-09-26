@@ -1,0 +1,42 @@
+<BOUCLE_membre(MEMBRES){id_membre}{statut?}>
+[<div class="champ contenu_prenom[ (#PRENOM*|strlen|?{'',vide})]">
+	<label><:membre:champ_prenom_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{prenom} prenom">(#PRENOM)</span>
+</div>]
+
+[<div class="champ contenu_nom[ (#NOM*|strlen|?{'',vide})]">
+	<label><:membre:champ_nom_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{nom} nom">(#NOM)</span>
+</div>]
+
+[<div class="champ contenu_fonction[ (#FONCTION*|strlen|?{'',vide})]">
+	<label><:membre:champ_fonction_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{fonction} fonction">(#FONCTION)</span>
+</div>]
+
+[<div class="champ contenu_bio[ (#BIO*|strlen|?{'',vide})]">
+	<label><:membre:champ_bio_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{bio} bio">(#BIO)</span>
+</div>]
+
+[<div class="champ contenu_email[ (#EMAIL*|strlen|?{'',vide})]">
+	<label><:membre:champ_email_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{email} email">(#EMAIL)</span>
+</div>]
+
+[<div class="champ contenu_telephone[ (#TELEPHONE*|strlen|?{'',vide})]">
+	<label><:membre:champ_telephone_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{telephone} telephone">(#TELEPHONE)</span>
+</div>]
+
+[<div class="champ contenu_linkedin[ (#LINKEDIN*|strlen|?{'',vide})]">
+	<label><:membre:champ_linkedin_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{linkedin} linkedin">(#LINKEDIN)</span>
+</div>]
+
+[<div class="champ contenu_facebook[ (#FACEBOOK*|strlen|?{'',vide})]">
+	<label><:membre:champ_facebook_label:> : </label>
+	<span dir="#LANG_DIR" class="#EDIT{facebook} facebook">(#FACEBOOK)</span>
+</div>]
+
+</BOUCLE_membre>

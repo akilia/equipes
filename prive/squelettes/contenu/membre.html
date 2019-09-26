@@ -1,0 +1,56 @@
+[(#AUTORISER{voir,membre,#ID_MEMBRE}|sinon_interdire_acces)]
+[(#SET{url_voir,#VAL{membre}|objet_info{url_voir}})]
+[(#SET{url_edit,#VAL{membre}|objet_info{url_edit}})]
+<BOUCLE_membre(MEMBRES){id_membre}{statut==.*}{si #ENV{exec}|=={#GET{url_voir}}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,membre,#ID_MEMBRE})
+		[(#ID_MEMBRE|afficher_qui_edite{membre}|non)
+			[(#URL_ECRIRE{#GET{url_edit},id_membre=#ID_MEMBRE}|icone_verticale{<:membre:icone_modifier_membre:>,membre,edit,right ajax preload})]
+		]
+		[(#ID_MEMBRE|afficher_qui_edite{membre}|oui)
+			[(#URL_ECRIRE{#GET{url_edit},id_membre=#ID_MEMBRE}|icone_verticale{#ID_MEMBRE|afficher_qui_edite{membre},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{membre-24.png}|balise_img{membre,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{membre,#ID_MEMBRE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/membre,id=#ID_MEMBRE,id_membre=#ID_MEMBRE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,membre,#ID_MEMBRE})
+	[(#ID_MEMBRE|afficher_qui_edite{membre}|non)
+		[(#URL_ECRIRE{#GET{url_edit},id_membre=#ID_MEMBRE}|icone_verticale{<:membre:icone_modifier_membre:>,membre,edit,right ajax preload})]
+	]
+	[(#ID_MEMBRE|afficher_qui_edite{membre}|oui)
+		[(#URL_ECRIRE{#GET{url_edit},id_membre=#ID_MEMBRE}|icone_verticale{#ID_MEMBRE|afficher_qui_edite{membre},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,membre,id,#ID_MEMBRE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+
+
+#SET{enfants,''}
+[(#VAL{prive/objets/contenu/membre-enfants}|trouver_fond|oui)
+	[(#SET{enfants,[(#INCLURE{fond=prive/objets/contenu/membre-enfants,id_membre,env})]})]
+]
+[(#PIPELINE{affiche_enfants,[(#ARRAY{args,#ARRAY{exec,membre,id_membre,#ID_MEMBRE,objet,membre,id_objet,#ID_MEMBRE},data,#GET{enfants}})]})]
+
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_membre>
+[(#ENV**{exec}|=={#GET{url_edit}}|?{#INCLURE{fond=prive/squelettes/contenu/#GET{url_edit},redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_membre>

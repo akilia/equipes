@@ -1,0 +1,10 @@
+<!-- hierarchie -->
+<a href="#URL_ECRIRE{membres}"><:membre:titre_membres:></a>
+<BOUCLE_hierarchie(MEMBRES){id_membre}{statut?}>
+&gt; [(#URL_ECRIRE{equipe,id_equipe=#ID_EQUIPE}|lien_ou_expose{#INFO_TITRE{equipes,#ID_EQUIPE},''})]
+&gt; <strong class="on">#NOM</strong>
+</BOUCLE_hierarchie>
+[(#ENV{id_equipe}|oui)
+	&gt; [(#URL_ECRIRE{equipe,id_equipe=#ID_EQUIPE}|lien_ou_expose{#INFO_TITRE{equipes,#ID_EQUIPE},''})]
+]&gt; <strong class="on"><:ecrire:info_sans_titre:></strong>
+<//B_hierarchie>

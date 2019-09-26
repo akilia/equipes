@@ -1,0 +1,36 @@
+[(#SET{defaut_tri,#ARRAY{
+	nom,1,
+	id_membre,1,
+	points,-1
+}})]<B_liste_membres>
+#ANCRE_PAGINATION
+<div class="liste-objets membres">
+<table class="spip liste">
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{membre:info_1_membre,membre:info_nb_membres}})</strong></caption>]
+	<thead>
+		<tr class="first_row">
+			<th class="picto" scope="col"></th>
+			<th class="statut" scope="col">[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class="nom" scope="col">[(#TRI{nom,<:membre:champ_nom_label:>,ajax})]</th>
+			<th class="id" scope="col">[(#TRI{id_membre,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_membres(MEMBRES){id_equipe?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			<td class="picto">[(#CHEMIN_IMAGE{membre-16.png}|balise_img)]</td>
+			<td class="statut">[(#STATUT|puce_statut{membre,#ID_MEMBRE})]</td> 
+			<td class="nom principale">[(#LOGO_MEMBRE|image_reduire{20,26})]<a href="[(#ID_MEMBRE|generer_url_entite{membre})]" title="<:info_numero_abbreviation|attribut_html:> #ID_MEMBRE">[(#RANG). ]#NOM</a></td>
+			<td class="id">[(#AUTORISER{modifier,membre,#ID_MEMBRE}|?{
+				<a href="[(#URL_ECRIRE{membre_edit,id_membre=#ID_MEMBRE})]">#ID_MEMBRE</a>,
+				#ID_MEMBRE
+			})]</td>
+		</tr>
+	</BOUCLE_liste_membres>
+	</tbody>
+</table>
+[<p class="pagination">(#PAGINATION{prive})</p>]
+</div>
+</B_liste_membres>[
+<div class="liste-objets membres caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_membres>

@@ -1,0 +1,36 @@
+[(#ID_MEMBRE|oui)
+	[(#AUTORISER{modifier,membre,#ID_MEMBRE}|sinon_interdire_acces)]
+	[(#SET{id_parent,#INFO_ID_EQUIPE{membre,#ID_MEMBRE}})]
+]
+
+[(#ID_MEMBRE|non)
+	#SET{id_parent,#ENV{id_equipe,#ENV{id_parent}}}
+	[(#GET{id_parent}|non|ou{[(#AUTORISER{creermembredans, equipe, #GET{id_parent}})]}|sinon_interdire_acces)]
+]
+
+#SET{redirect,#ENV{redirect}|sinon{#ID_MEMBRE|?{#ID_MEMBRE|generer_url_entite{membre},#GET{id_parent}|?{#GET{id_parent}|generer_url_entite{equipe},#URL_ECRIRE{equipes}}}}}
+
+
+
+<div class="cadre-formulaire-editer">
+<div class="entete-formulaire">
+	[(#ID_MEMBRE|oui)
+	[(#GET{redirect}|icone_verticale{<:icone_retour:>,membre,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_MEMBRE|?{<:membre:icone_modifier_membre:>,<:membre:icone_creer_membre:>})]
+		<h1>(#ENV{titre,#INFO_NOM{membre,#ID_MEMBRE}|sinon{<:info_sans_titre:>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_MEMBRE|generer_url_entite{membre}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_MEMBRE{#ENV{id_membre,oui}, #GET{id_parent}, #GET{redirect}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

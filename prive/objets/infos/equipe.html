@@ -1,0 +1,30 @@
+<BOUCLE_equipe(EQUIPES){id_equipe=#ENV{id}}{statut?}>
+<div class="infos">
+[(#SET{texte_objet,<:equipe:titre_equipe:>})]
+<div class="numero"><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_EQUIPE</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{equipes,#ID_EQUIPE})]
+
+<div class='nb_elements'><!--nb_elements--></div>
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(EQUIPES){id_equipe}>
+	[(#VAL{redirect}
+		|generer_url_action{type=equipes&id=#ID_EQUIPE}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,equipes,#ID_EQUIPE,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=equipes&id=#ID_EQUIPE}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_equipe>

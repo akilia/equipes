@@ -1,0 +1,30 @@
+<BOUCLE_membre(MEMBRES){id_membre=#ENV{id}}{statut?}>
+<div class="infos">
+[(#SET{texte_objet,<:membre:titre_membre:>})]
+<div class="numero"><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_MEMBRE</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{membres,#ID_MEMBRE})]
+
+<div class='nb_elements'><!--nb_elements--></div>
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(MEMBRES){id_membre}>
+	[(#VAL{redirect}
+		|generer_url_action{type=membres&id=#ID_MEMBRE}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,membres,#ID_MEMBRE,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=membres&id=#ID_MEMBRE}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_membre>

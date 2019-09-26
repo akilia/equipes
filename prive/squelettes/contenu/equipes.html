@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/equipes, env, ajax, sinon=<:equipe:info_aucun_equipe:>}>
+
+[(#AUTORISER{creer,equipe})
+	[(#URL_ECRIRE{equipe_edit,new=oui}|icone_verticale{<:equipe:icone_creer_equipe:>,equipe,new,right})]
+]

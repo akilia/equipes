@@ -1,0 +1,39 @@
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_equipes.php ../plugins/fabrique_auto/.backup/equipes/base/equipes.php ../plugins/fabrique_auto/equipes/base/equipes.php
+101c101
+< 			'Email'              => 'tinytext NOT NULL DEFAULT ""',
+---
+> 			'email'              => 'tinytext NOT NULL DEFAULT ""',
+115c115
+< 		'champs_editables'  => array('prenom', 'nom', 'fonction', 'bio', 'Email', 'telephone', 'linkedin', 'facebook', 'id_equipe'),
+---
+> 		'champs_editables'  => array('prenom', 'nom', 'fonction', 'bio', 'email', 'telephone', 'linkedin', 'facebook', 'id_equipe'),
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_equipes.php ../plugins/fabrique_auto/.backup/equipes/formulaires/editer_membre.html ../plugins/fabrique_auto/equipes/formulaires/editer_membre.html
+17c17
+< 			[(#SAISIE{input, id_equipe, obligatoire=oui,
+---
+> 			[(#SAISIE{equipes, id_equipe, obligatoire=oui,
+29,30c29,30
+< 			[(#SAISIE{input, Email,
+< 				label=<:membre:champ_Email_label:>})]
+---
+> 			[(#SAISIE{input, email,
+> 				label=<:membre:champ_email_label:>})]
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_equipes.php ../plugins/fabrique_auto/.backup/equipes/lang/membre_fr.php ../plugins/fabrique_auto/equipes/lang/membre_fr.php
+15d14
+< 	'champ_Email_label' => 'email',
+16a16
+> 	'champ_email_label' => 'Email',
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_equipes.php ../plugins/fabrique_auto/.backup/equipes/paquet.xml ../plugins/fabrique_auto/equipes/paquet.xml
+12c12
+< 		Paquet généré le 2019-09-26 10:59:15
+---
+> 		Paquet généré le 2019-09-26 11:06:56
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_equipes.php ../plugins/fabrique_auto/.backup/equipes/prive/objets/contenu/membre.html ../plugins/fabrique_auto/equipes/prive/objets/contenu/membre.html
+22,24c22,24
+< [<div class="champ contenu_Email[ (#EMAIL*|strlen|?{'',vide})]">
+< 	<label><:membre:champ_Email_label:> : </label>
+< 	<span dir="#LANG_DIR" class="#EDIT{Email} Email">(#EMAIL)</span>
+---
+> [<div class="champ contenu_email[ (#EMAIL*|strlen|?{'',vide})]">
+> 	<label><:membre:champ_email_label:> : </label>
+> 	<span dir="#LANG_DIR" class="#EDIT{email} email">(#EMAIL)</span>

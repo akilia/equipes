@@ -1,0 +1,46 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_membre,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method="post" action="#ENV{action}"><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type="hidden" name="id_membre" value="#ENV{id_membre}" />
+		<div class="editer-groupe">
+
+			[(#SAISIE{input, prenom, label=<:membre:champ_prenom_label:>})]
+
+			[(#SAISIE{input, nom, obligatoire=oui, label=<:membre:champ_nom_label:>})]
+
+			[(#SAISIE{input, id_equipe, obligatoire=oui, label=<:equipe:titre_equipe:>})]
+
+
+			[(#SAISIE{textarea, fonction, label=<:membre:champ_fonction_label:>, rows=2})]
+
+			[(#SAISIE{textarea, bio,
+				label=<:membre:champ_bio_label:>,
+				conteneur_class=pleine_largeur, class=inserer_barre_edition, rows=10})]
+
+			[(#CONFIG{equipes/membres/email}|=={on}|oui)
+				[(#SAISIE{input, email, label=<:membre:champ_email_label:>})]
+			]
+
+			[(#CONFIG{equipes/membres/telephone}|=={on}|oui)
+				[(#SAISIE{input, telephone, label=<:membre:champ_telephone_label:>})]
+			]
+
+			[(#CONFIG{equipes/membres/linkedin}|=={on}|oui)
+				[(#SAISIE{input, linkedin, label=<:membre:champ_linkedin_label:>})]
+			]
+
+			[(#CONFIG{equipes/membres/facebook}|=={on}|oui)
+				[(#SAISIE{input, facebook, label=<:membre:champ_facebook_label:>})]
+			]
+
+		</div>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
+	</div></form>
+	]
+</div>
