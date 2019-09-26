@@ -165,3 +165,15 @@ function equipes_trig_propager_les_secteurs($flux) {
 
 	return $flux;
 }
+
+/**
+ * Compatibilité avec le plugin Rang : pouvoir classer les membres d'une équipe
+ *
+ * @pipeline rang_declarer_contexte
+ * @param  string $flux Données du pipeline
+ * @return string       Données du pipeline
+**/
+function equipes_rang_declarer_contexte($flux) {
+	$flux[] = 'equipe';
+	return $flux;
+}

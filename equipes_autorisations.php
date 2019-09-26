@@ -199,3 +199,18 @@ function autoriser_membre_supprimer_dist($faire, $type, $id, $qui, $opt) {
 function autoriser_equipe_creermembredans_dist($faire, $type, $id, $qui, $opt) {
 	return ($id and autoriser('voir', 'equipes', $id) and autoriser('creer', 'membre'));
 }
+
+/** 
+ * Compatibilité LIM : gestion des contenus pr rubriques
+ * pouvoir choisir dans quelle·s rurbique·s on peut créer des équipes
+**/
+if (!function_exists('autoriser_rubrique_creerequipedans') AND test_plugin_actif('lim')) {
+	function autoriser_rubrique_creerequipedans($faire, $type, $id, $qui, $opt) {
+		$quelles_rubriques = lire_config('lim_rubriques/equipe');
+		is_null($quelles_rubriques) ? $lim_rub = true : $lim_rub = !in_array($id,$quelles_rubriques);
+ 
+		return
+			$lim_rub
+			AND autoriser_rubrique_creerequipedans_dist($faire, $type, $id, $qui, $opt);
+	}
+}

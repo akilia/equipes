@@ -1,9 +1,9 @@
 <paquet
 	prefix="equipes"
 	categorie="divers"
-	version="0.1.0"
+	version="0.1.1"
 	etat="dev"
-	compatibilite="[3.2.5;3.2.*]"
+	compatibilite="[3.2.5;3.3.*]"
 	logo="prive/themes/spip/images/equipes-64.png"
 	documentation=""
 	schema="1.0.0" 
@@ -19,6 +19,8 @@
 
 	<licence>GNU/GPL</licence>
 	<necessite nom="saisies" compatibilite="[3.23.2;]" /> 
+	<utilise nom="lim" compatibilite="[2.1.1;]" /> 
+	<utilise nom="rang" compatibilite="[1.0.13;]" /> 
 
 
 	<pipeline nom="autoriser" inclure="equipes_autorisations.php" /> 
@@ -29,7 +31,9 @@
 	<pipeline nom="boite_infos" inclure="equipes_pipelines.php" /> 
 	<pipeline nom="objet_compte_enfants" inclure="equipes_pipelines.php" /> 
 	<pipeline nom="optimiser_base_disparus" inclure="equipes_pipelines.php" /> 
-	<pipeline nom="trig_propager_les_secteurs" inclure="equipes_pipelines.php" /> 
+	<pipeline nom="trig_propager_les_secteurs" inclure="equipes_pipelines.php" />
+
+	<pipeline nom="rang_declarer_contexte" inclure="equipes_pipelines.php" />
 
 	<menu nom="equipes" titre="equipe:titre_equipes" parent="menu_edition" icone="images/equipe-16.png" action="equipes" /> 
 	<menu nom="membres" titre="membre:titre_membres" parent="menu_edition" icone="images/membre-16.png" action="membres" /> 
