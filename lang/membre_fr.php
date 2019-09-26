@@ -12,6 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'ajouter_lien_membre' => 'Ajouter ce membre',
 
 	// C
+	'cfg_titre_contenu_membres' => 'Contenus fiche Membre',
 	'champ_bio_label' => 'Biographie',
 	'champ_email_label' => 'Email',
 	'champ_facebook_label' => 'Facebook',
@@ -43,7 +44,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'texte_creer_associer_membre' => 'Créer et associer un membre',
 	'texte_definir_comme_traduction_membre' => 'Ce membre est une traduction du membre numéro :',
 	'titre_langue_membre' => 'Langue de ce membre',
-	'titre_logo_membre' => 'Logo de ce membre',
+	'titre_logo_membre' => 'Photo de ce membre',
 	'titre_membre' => 'Membre',
 	'titre_membres' => 'Membres',
 	'titre_membres_rubrique' => 'Membres de la rubrique',
