@@ -1,26 +1,33 @@
 [(#SET{defaut_tri,#ARRAY{
+	rang,1,
 	nom,1,
 	id_membre,1,
 	points,-1
-}})]<B_liste_membres>
+}})]
+
+#SET{activer_rang, #VAL{membres}|in_array{#RANG_LISTE_OBJETS} }
+[(#GET{activer_rang}|oui) [(#VAL{rang}|setenv{par})] #SET{tri,rang} ]
+
+<B_liste_membres>
 #ANCRE_PAGINATION
-<div class="liste-objets membres">
-<table class="spip liste">
+<div class="liste-objets auteurs membres">
+<table class="spip liste" data-objet="membres">
 	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{membre:info_1_membre,membre:info_nb_membres}})</strong></caption>]
 	<thead>
 		<tr class="first_row">
-			<th class="picto" scope="col"></th>
+			[(#GET{activer_rang}|oui)<th class="rang" scope="col">[(#TRI{rang,<span title="<:rang:lien_trier_rang|attribut_html:>"><:rang:info_rang_abbr:></span>,ajax})]</th>]
 			<th class="statut" scope="col">[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
-			<th class="nom" scope="col">[(#TRI{nom,<:membre:champ_nom_label:>,ajax})]</th>
+			<th class="nom" scope="col" colspan='2'>[(#TRI{nom,<:membre:champ_nom_label:>,ajax})]</th>
 			<th class="id" scope="col">[(#TRI{id_membre,<:info_numero_abbreviation:>,ajax})]</th>
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_membres(MEMBRES){id_equipe?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
-		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
-			<td class="picto">[(#CHEMIN_IMAGE{membre-16.png}|balise_img)]</td>
+	<BOUCLE_liste_membres(MEMBRES){id_membre?}{id_equipe?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+		<tr [(#GET{activer_rang}|oui)data-id_objet="#ID_MEMBRE"] class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			[(#GET{activer_rang}|oui)<td class="rang">[(#RANG).]</td>]
 			<td class="statut">[(#STATUT|puce_statut{membre,#ID_MEMBRE})]</td> 
-			<td class="nom principale">[(#LOGO_MEMBRE|image_reduire{20,26})]<a href="[(#ID_MEMBRE|generer_url_entite{membre})]" title="<:info_numero_abbreviation|attribut_html:> #ID_MEMBRE">[(#RANG). ]#NOM</a></td>
+			<td class="titre principale"[(#LOGO_MEMBRE|non)colspan='2']><a href="[(#ID_MEMBRE|generer_url_entite{membre})]" title="<:info_numero_abbreviation|attribut_html:> #ID_MEMBRE">[(#PRENOM) ]#NOM[<span class="soustitre">(#FONCTION)</span>]</a></td>
+			[<td class='logo'><a href="[(#ID_MEMBRE|generer_url_entite{membre})]" style="background-image:url\((#LOGO_MEMBRE|image_passe_partout{40,40}|extraire_attribut{src}))"></a></td>]
 			<td class="id">[(#AUTORISER{modifier,membre,#ID_MEMBRE}|?{
 				<a href="[(#URL_ECRIRE{membre_edit,id_membre=#ID_MEMBRE})]">#ID_MEMBRE</a>,
 				#ID_MEMBRE
