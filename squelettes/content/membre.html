@@ -1,0 +1,22 @@
+<BOUCLE_contexte(MEMBRES){id_membre}>
+<article class="pb-prefooter">
+	<div class="container">
+		<header class="col-xs-12 col-sm-10 push-sm-1 col-md-8 push-md-2 pt-5">
+			<h1>[(#PRENOM) ]#NOM</h1>
+			[<h2 class='h3'>(#FONCTION)</h2>]
+			[(#LOGO_MEMBRE)]
+		</header>
+		[<main class="col-xs-12 col-sm-10 push-sm-1 col-md-8 push-md-2">
+			(#BIO)
+		</main>]
+		<footer class="col-xs-12 col-sm-10 push-sm-1 col-md-8 push-md-2">
+			<ul class='spip'>
+				[<li class='socicon-mail mb-1'><a href="mailto:#EMAIL">(#EMAIL)</a></li>]
+				[<li class='socicon-viber mb-1'><a href="tel:[(#TELEPHONE|remove_whitespace)]">(#TELEPHONE)</a></li>]
+				[<li class='socicon-linkedin mb-1'><a href="#LINKEDIN">(#LINKEDIN)</a></li>]
+				[<li class='socicon-facebook mb-1'><a href="#FACEBOOK">(#FACEBOOK)</a></li>]
+			</ul>
+		</footer>
+	</div>
+</article>
+</BOUCLE_contexte>

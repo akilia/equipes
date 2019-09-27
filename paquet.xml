@@ -21,6 +21,7 @@
 	<necessite nom="saisies" compatibilite="[3.23.2;]" /> 
 	<utilise nom="lim" compatibilite="[2.1.1;]" /> 
 	<utilise nom="rang" compatibilite="[1.0.13;]" /> 
+	<utilise nom="sociaux" compatibilite="[2.1.10;]" /> 
 
 
 	<pipeline nom="autoriser" inclure="equipes_autorisations.php" /> 
@@ -36,5 +37,8 @@
 	<pipeline nom="rang_declarer_contexte" inclure="equipes_pipelines.php" />
 
 	<menu nom="equipes" titre="equipe:titre_equipes" parent="menu_edition" icone="images/equipe-16.png" action="equipes" /> 
-	<menu nom="membres" titre="membre:titre_membres" parent="menu_edition" icone="images/membre-16.png" action="membres" /> 
+	<menu nom="membres" titre="membre:titre_membres" parent="menu_edition" icone="images/membre-16.png" action="membres" />
+
+	<chemin path="./" />
+	<chemin path="squelettes" type='public'/>
 </paquet>
