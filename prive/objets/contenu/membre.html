@@ -1,42 +1,27 @@
 <BOUCLE_membre(MEMBRES){id_membre}{statut?}>
-[<div class="champ contenu_prenom[ (#PRENOM*|strlen|?{'',vide})]">
-	<label><:membre:champ_prenom_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{prenom} prenom">(#PRENOM)</span>
-</div>]
-
-[<div class="champ contenu_nom[ (#NOM*|strlen|?{'',vide})]">
-	<label><:membre:champ_nom_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{nom} nom">(#NOM)</span>
-</div>]
-
-[<div class="champ contenu_fonction[ (#FONCTION*|strlen|?{'',vide})]">
-	<label><:membre:champ_fonction_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{fonction} fonction">(#FONCTION)</span>
-</div>]
 
 [<div class="champ contenu_bio[ (#BIO*|strlen|?{'',vide})]">
-	<label><:membre:champ_bio_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{bio} bio">(#BIO)</span>
+	<b dir="#LANG_DIR" class="#EDIT{bio} bio">(#BIO)</b>
 </div>]
 
 [<div class="champ contenu_email[ (#EMAIL*|strlen|?{'',vide})]">
-	<label><:membre:champ_email_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{email} email">(#EMAIL)</span>
+	<label[ (#PLUGIN{sociaux}|oui)class='socicon-mail']>[(#PLUGIN{sociaux}|non)<:membre:champ_email_label:> : ]</label>
+	<a href='mailto:#EMAIL' dir="#LANG_DIR" class="#EDIT{email} email">(#EMAIL)</a>
 </div>]
 
 [<div class="champ contenu_telephone[ (#TELEPHONE*|strlen|?{'',vide})]">
-	<label><:membre:champ_telephone_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{telephone} telephone">(#TELEPHONE)</span>
+	<label[ (#PLUGIN{sociaux}|oui)class='socicon-viber']>[(#PLUGIN{sociaux}|non)<:membre:champ_telephone_label:> : ]</label>
+	<a href='tel:#TELEPHONE' dir="#LANG_DIR" class="#EDIT{telephone} telephone">(#TELEPHONE)</a>
 </div>]
 
 [<div class="champ contenu_linkedin[ (#LINKEDIN*|strlen|?{'',vide})]">
-	<label><:membre:champ_linkedin_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{linkedin} linkedin">(#LINKEDIN)</span>
+	<label[ (#PLUGIN{sociaux}|oui)class='socicon-linkedin']>[(#PLUGIN{sociaux}|non)<:membre:champ_linkedin_label:> : ]</label>
+	<a href='#LINKEDIN' dir="#LANG_DIR" class="#EDIT{linkedin}">(#LINKEDIN)</a>
 </div>]
 
 [<div class="champ contenu_facebook[ (#FACEBOOK*|strlen|?{'',vide})]">
-	<label><:membre:champ_facebook_label:> : </label>
-	<span dir="#LANG_DIR" class="#EDIT{facebook} facebook">(#FACEBOOK)</span>
+	<label[ (#PLUGIN{sociaux}|oui)class='socicon-facebook']>[(#PLUGIN{sociaux}|non)<:membre:champ_facebook_label:> : ]</label>
+	<a href='#FACEBOOK'  dir="#LANG_DIR" class="#EDIT{facebook}"> (#FACEBOOK)</span></a>
 </div>]
 
 </BOUCLE_membre>

@@ -28,14 +28,6 @@
 
 <div class="nettoyeur"></div>
 
-[(#AUTORISER{modifier,equipe,#ID_EQUIPE})
-	[(#ID_EQUIPE|afficher_qui_edite{equipe}|non)
-		[(#URL_ECRIRE{#GET{url_edit},id_equipe=#ID_EQUIPE}|icone_verticale{<:equipe:icone_modifier_equipe:>,equipe,edit,right ajax preload})]
-	]
-	[(#ID_EQUIPE|afficher_qui_edite{equipe}|oui)
-		[(#URL_ECRIRE{#GET{url_edit},id_equipe=#ID_EQUIPE}|icone_verticale{#ID_EQUIPE|afficher_qui_edite{equipe},warning-24,'',right edition_deja ajax preload})]
-	]
-]
 
 #PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,equipe,id,#ID_EQUIPE},data,'<div class="nettoyeur"></div>'}}
 
