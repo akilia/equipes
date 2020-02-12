@@ -1,12 +1,12 @@
 <paquet
 	prefix="equipes"
 	categorie="divers"
-	version="0.1.1"
+	version="0.1.2"
 	etat="dev"
 	compatibilite="[3.2.5;3.3.*]"
 	logo="prive/themes/spip/images/equipes-64.png"
 	documentation=""
-	schema="1.0.0" 
+	schema="1.0.1" 
 >
 	<!--
 		Paquet généré le 2019-09-26 11:06:56
@@ -19,7 +19,7 @@
 
 	<licence>GNU/GPL</licence>
 	<necessite nom="saisies" compatibilite="[3.23.2;]" /> 
-	<utilise nom="lim" compatibilite="[2.1.1;]" /> 
+	<utilise nom="lim" compatibilite="[2.1.2;]" /> 
 	<utilise nom="rang" compatibilite="[1.0.13;]" /> 
 	<utilise nom="sociaux" compatibilite="[2.1.10;]" /> 
 

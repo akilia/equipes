@@ -8,14 +8,16 @@
 		<input type="hidden" name="id_membre" value="#ENV{id_membre}" />
 		<div class="editer-groupe">
 
-			[(#SAISIE{input, prenom, label=<:membre:champ_prenom_label:>})]
+			[(#CONFIG{equipes/membres/prenom}|=={on}|oui)
+				[(#SAISIE{input, prenom, label=<:membre:champ_prenom_label:>})]
+			]
 
 			[(#SAISIE{input, nom, obligatoire=oui, label=<:membre:champ_nom_label:>})]
 
 			[(#SAISIE{input, id_equipe, obligatoire=oui, label=<:equipe:titre_equipe:>})]
 
 
-			[(#SAISIE{textarea, fonction, label=<:membre:champ_fonction_label:>, rows=2})]
+			[(#SAISIE{textarea, fonction, label=<:membre:champ_fonction_label:>, class=inserer_barre_forum, rows=3})]
 
 			[(#SAISIE{textarea, bio,
 				label=<:membre:champ_bio_label:>,
@@ -35,6 +37,10 @@
 
 			[(#CONFIG{equipes/membres/facebook}|=={on}|oui)
 				[(#SAISIE{input, facebook, label=<:membre:champ_facebook_label:>})]
+			]
+
+			[(#CONFIG{equipes/membres/leader}|=={on}|oui)
+				[(#SAISIE{case, leader, label= Désigner ce membre comme :, label_case=<:membre:champ_leader_label:>, valeur_oui=oui, valeur_non=non})]
 			]
 
 		</div>

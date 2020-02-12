@@ -101,6 +101,7 @@ function equipes_declarer_tables_objets_sql($tables) {
 			'telephone'          => 'varchar(50) NOT NULL DEFAULT ""',
 			'linkedin'           => 'text NOT NULL DEFAULT ""',
 			'facebook'           => 'text NOT NULL DEFAULT ""',
+			'leader'             => 'varchar(3)  DEFAULT "non" NOT NULL',
 			'statut'             => 'varchar(20)  DEFAULT "0" NOT NULL',
 			'maj'                => 'TIMESTAMP'
 		),
@@ -111,7 +112,7 @@ function equipes_declarer_tables_objets_sql($tables) {
 		),
 		'titre' => "CONCAT(prenom,' ',nom) AS titre, '' AS lang",
 		 #'date' => '',
-		'champs_editables'  => array('prenom', 'nom', 'fonction', 'bio', 'email', 'telephone', 'linkedin', 'facebook', 'id_equipe'),
+		'champs_editables'  => array('prenom', 'nom', 'fonction', 'bio', 'email', 'telephone', 'linkedin', 'facebook', 'leader', 'id_equipe'),
 		'champs_versionnes' => array(),
 		'rechercher_champs' => array("prenom" => 3, "nom" => 8, "fonction" => 5),
 		'tables_jointures'  => array(),

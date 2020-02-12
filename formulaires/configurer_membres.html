@@ -9,12 +9,28 @@
 	<div>
 		#ACTION_FORMULAIRE{#ENV{action}}
 
+		
+		<p class="explication">Par défaut, une fiche membre propose les champs Nom, Fonction et Biographie. Vous pouvez activer en plus les champs ci-dessous.</p>
 		<div class="editer-groupe">
+			[(#SAISIE{oui_non_ligne, prenom, label=<:membre:champ_prenom_label:>, li_class=long_label})]
 			[(#SAISIE{oui_non_ligne, email, label=<:membre:champ_email_label:>, li_class=long_label})]
 			[(#SAISIE{oui_non_ligne, telephone, label=<:membre:champ_telephone_label:>, li_class=long_label})]
-			[(#SAISIE{oui_non_ligne, linkedin, label=<:membre:champ_linkedin_label:>, li_class=long_label})]
-			[(#SAISIE{oui_non_ligne, facebook, label=<:membre:champ_facebook_label:>, li_class=long_label})]
 		</div>
+
+		<fieldset>
+			<legend>Liens réseaux sociaux</legend>
+			<div class="editer-groupe">
+				[(#SAISIE{oui_non_ligne, linkedin, label=<:membre:champ_linkedin_label:>, li_class=long_label})]
+				[(#SAISIE{oui_non_ligne, facebook, label=<:membre:champ_facebook_label:>, li_class=long_label})]
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Catégorie</legend>
+			<div class="editer-groupe">
+				[(#SAISIE{case, leader, label=Catégorie, label_case=<:membre:champ_leader_config_label:>, li_class=long_label})]
+			</div>
+		</fieldset>
 
 		<input type="hidden" name="_meta_casier" value="equipes/membres" />
 		<p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:bouton_enregistrer:>" /></p>
