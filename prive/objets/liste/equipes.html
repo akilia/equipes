@@ -1,26 +1,32 @@
 [(#SET{defaut_tri,#ARRAY{
+	rang,1,
 	nom,1,
 	id_equipe,1,
 	points,-1
-}})]<B_liste_equipes>
+}})]
+
+#SET{activer_rang, #VAL{equipes}|in_array{#RANG_LISTE_OBJETS} }
+[(#GET{activer_rang}|oui) [(#VAL{rang}|setenv{par})] #SET{tri,rang} ]
+
+<B_liste_equipes>
 #ANCRE_PAGINATION
 <div class="liste-objets equipes">
-<table class="spip liste">
+<table class="spip liste" data-objet="equipes">
 	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{equipe:info_1_equipe,equipe:info_nb_equipes}})</strong></caption>]
 	<thead>
 		<tr class="first_row">
-			<th class="picto" scope="col"></th>
+			[(#GET{activer_rang}|oui)<th class="rang" scope="col">[(#TRI{rang,<span title="<:rang:lien_trier_rang|attribut_html:>"><:rang:info_rang_abbr:></span>,ajax})]</th>]
 			<th class="statut" scope="col">[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
 			<th class="nom" scope="col">[(#TRI{nom,<:equipe:champ_nom_label:>,ajax})]</th>
 			<th class="id" scope="col">[(#TRI{id_equipe,<:info_numero_abbreviation:>,ajax})]</th>
 		</tr>
 	</thead>
 	<tbody>
-	<BOUCLE_liste_equipes(EQUIPES){id_rubrique?}{id_secteur?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
-		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
-			<td class="picto">[(#CHEMIN_IMAGE{equipe-16.png}|balise_img)]</td>
+	<BOUCLE_liste_equipes(EQUIPES){id_equipe?}{id_rubrique?}{id_secteur?}{id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+		<tr [(#GET{activer_rang}|oui)data-id_objet="#ID_EQUIPE"] class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			[(#GET{activer_rang}|oui)<td class="rang">[(#RANG).]</td>]
 			<td class="statut">[(#STATUT|puce_statut{equipe,#ID_EQUIPE,#ID_RUBRIQUE})]</td> 
-			<td class="nom principale">[(#LOGO_EQUIPE|image_reduire{20,26})]<a href="[(#ID_EQUIPE|generer_url_entite{equipe})]" title="<:info_numero_abbreviation|attribut_html:> #ID_EQUIPE">[(#RANG). ]#NOM</a></td>
+			<td class="nom principale">[(#LOGO_EQUIPE|image_reduire{20,26})]<a href="[(#ID_EQUIPE|generer_url_entite{equipe})]" title="<:info_numero_abbreviation|attribut_html:> #ID_EQUIPE">#NOM</a></td>
 			<td class="id">[(#AUTORISER{modifier,equipe,#ID_EQUIPE}|?{
 				<a href="[(#URL_ECRIRE{equipe_edit,id_equipe=#ID_EQUIPE})]">#ID_EQUIPE</a>,
 				#ID_EQUIPE
