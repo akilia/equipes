@@ -28,6 +28,8 @@ function equipes_declarer_tables_interfaces($interfaces) {
 	$interfaces['table_des_tables']['equipes'] = 'equipes';
 	$interfaces['table_des_tables']['membres'] = 'membres';
 
+	$interfaces['table_des_traitements']['FONCTION'][] = _TRAITEMENT_RACCOURCIS;
+
 	return $interfaces;
 }
 
