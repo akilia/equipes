@@ -14,8 +14,7 @@
 
 			[(#SAISIE{input, nom, obligatoire=oui, label=<:membre:champ_nom_label:>})]
 
-			[(#SAISIE{input, id_equipe, obligatoire=oui, label=<:equipe:titre_equipe:>})]
-
+			[(#SAISIE{selection, id_equipe, obligatoire=oui, label=<:equipe:titre_equipe:>, datas=[(#VAL{3}|equipes_liste_equipes)]})]
 
 			[(#SAISIE{textarea, fonction, label=<:membre:champ_fonction_label:>, class=inserer_barre_forum, rows=3})]
 
@@ -40,7 +39,7 @@
 			]
 
 			[(#CONFIG{equipes/membres/leader}|=={on}|oui)
-				[(#SAISIE{case, leader, label= Désigner ce membre comme :, label_case=<:membre:champ_leader_label:>, valeur_oui=oui, valeur_non=non})]
+				[(#SAISIE{case, leader, label= Ce membre est, label_case=<:membre:champ_leader_label:>, valeur_oui=oui, valeur_non=non})]
 			]
 
 		</div>
