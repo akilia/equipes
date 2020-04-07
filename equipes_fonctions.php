@@ -35,21 +35,21 @@ function remove_whitespace($text) {
  *  [(#SAISIE{selection, categorie, datas=[(#VAL{1}|equipes_liste_equipes{valeur_par_defaut})]})]
  * 
  * @param int id_rubrique
- *		ID de la rubrique ou l'on veut recupérer la liste des équipes
+ *		ID de la rubrique de la liste des équipes à récupérer
  * @param string defaut
  *		Valeur par defaut du tableau d'equipe
  *
  * @return array
  *		array(id_equipe -> nom, etc.)
  */
-function equipes_liste_equipes($id_rubrique, $defaut = null) {
+function equipes_liste_equipes($id_rubrique = 0, $defaut = null) {
 	$liste_equipes = array();
 
 	if ($defaut) {
 		$liste_equipes = array('' => $defaut);
 	}
 
-	$res = sql_allfetsel('id_equipe, nom', 'spip_equipes', 'id_rubrique='.intval($id_rubrique));
+	$res = sql_allfetsel('id_equipe, nom', 'spip_equipes');
 	foreach ($res as $value) {
 		$add_equipes[$value['id_equipe']] = $value['nom'];
 	}

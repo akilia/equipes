@@ -1,7 +1,7 @@
 <paquet
 	prefix="equipes"
 	categorie="divers"
-	version="0.1.4"
+	version="0.1.5"
 	etat="dev"
 	compatibilite="[3.2.5;3.3.*]"
 	logo="prive/themes/spip/images/equipes-64.png"
