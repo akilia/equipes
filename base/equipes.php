@@ -65,8 +65,8 @@ function equipes_declarer_tables_objets_sql($tables) {
 		),
 		'titre' => 'nom AS titre, "" AS lang',
 		 #'date' => '',
-		'champs_editables'  => array('nom', 'descriptif', 'id_rubrique', 'id_secteur'),
-		'champs_versionnes' => array('id_rubrique', 'id_secteur'),
+		'champs_editables'  => array('nom', 'descriptif'),
+		'champs_versionnes' => array(),
 		'rechercher_champs' => array(),
 		'tables_jointures'  => array(),
 		'statut_textes_instituer' => array(
@@ -85,8 +85,6 @@ function equipes_declarer_tables_objets_sql($tables) {
 			)
 		),
 		'texte_changer_statut' => 'equipe:texte_changer_statut_equipe',
-
-
 	);
 
 	$tables['spip_membres'] = array(
@@ -95,6 +93,7 @@ function equipes_declarer_tables_objets_sql($tables) {
 		'field'=> array(
 			'id_membre'          => 'bigint(21) NOT NULL',
 			'id_equipe'          => 'bigint(21) NOT NULL DEFAULT 0',
+			'id_auteur'          => 'bigint(21) NOT NULL DEFAULT 0',
 			'prenom'             => 'text',
 			'nom'                => 'text NOT NULL DEFAULT ""',
 			'fonction'           => 'text NOT NULL DEFAULT ""',
@@ -114,7 +113,7 @@ function equipes_declarer_tables_objets_sql($tables) {
 		),
 		'titre' => "CONCAT(prenom,' ',nom) AS titre, '' AS lang",
 		 #'date' => '',
-		'champs_editables'  => array('prenom', 'nom', 'fonction', 'bio', 'email', 'telephone', 'linkedin', 'facebook', 'leader', 'id_equipe'),
+		'champs_editables'  => array('id_equipe', 'id_auteur', 'prenom', 'nom', 'fonction', 'bio', 'email', 'telephone', 'linkedin', 'facebook', 'leader'),
 		'champs_versionnes' => array(),
 		'rechercher_champs' => array("prenom" => 3, "nom" => 8, "fonction" => 5),
 		'tables_jointures'  => array(),
@@ -134,8 +133,6 @@ function equipes_declarer_tables_objets_sql($tables) {
 			)
 		),
 		'texte_changer_statut' => 'membre:texte_changer_statut_membre',
-
-
 	);
 
 	return $tables;

@@ -1,0 +1,8 @@
+#BOITE_OUVRIR{#CHEMIN_IMAGE{auteur-24.png}|balise_img{'',cadre-icone}|concat{Liaison fiche auteur},'simple','titrem'}
+<B_fiche_auteur>
+<BOUCLE_fiche_auteur(AUTEURS){id_auteur}{tous}>
+	<a href="#URL_ECRIRE{auteur, id_auteur=#ID_AUTEUR}">#NOM (#STATUT)</a>
+</BOUCLE_fiche_auteur>
+Aucune fiche auteur
+<//B_fiche_auteur>
+#BOITE_FERMER

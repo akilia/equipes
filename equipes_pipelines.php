@@ -124,6 +124,39 @@ function equipes_objet_compte_enfants($flux) {
 	return $flux;
 }
 
+/**
+ * Etablir des liens cliquables entre les fiches Auteur <-> Membre sir une liaison existe
+ *
+ * @pipeline affiche_droite
+ * @param  array $flux Données du pipeline
+ * @return array       Données du pipeline
+**/
+function equipes_affiche_droite($flux) {
+	$e = trouver_objet_exec($flux['args']['exec']);
+
+	/* Si la liaison existe, lien vers la fiche Membre de l'auteur */
+	if ($e['type'] == 'auteur' AND $e['edition'] == false) {
+		$id_auteur = $flux['args']['id_auteur'];
+		$id_membre = sql_getfetsel('id_membre', 'spip_membres', 'id_auteur='.intval($id_auteur));
+		if ($id_membre) {
+			$out = recuperer_fond("prive/objets/infos/liaison_membre", array('id_membre' => $id_membre));
+			$flux['data'] .= $out;
+		}
+	}
+
+	/* Si la liaison existe, lien vers la fiche Auteur du membre */
+	if ($e['type'] == 'membre' AND $e['edition'] == false) {
+		$id_membre = $flux['args']['id_membre'];
+		$id_auteur = sql_getfetsel('id_auteur', 'spip_membres', 'id_membre='.intval($id_membre));
+		if ($id_auteur > 0) {
+			$out = recuperer_fond("prive/objets/infos/liaison_auteur", array('id_auteur' => $id_auteur));
+			$flux['data'] .= $out;
+		}
+	}
+	
+	return $flux;
+}
+
 
 /**
  * Optimiser la base de données

@@ -32,6 +32,10 @@ function equipes_upgrade($nom_meta_base_version, $version_cible) {
 		array('sql_alter',"TABLE `spip_membres` ADD `leader` VARCHAR(3) NOT NULL DEFAULT 'non' AFTER `facebook`" )
 	);
 
+	$maj['1.0.2'] = array(
+		array('sql_alter',"TABLE `spip_membres` ADD `id_auteur` bigint(21) NOT NULL DEFAULT 0 AFTER `id_equipe`" )
+	);
+
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }

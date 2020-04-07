@@ -1,12 +1,12 @@
 <paquet
 	prefix="equipes"
 	categorie="divers"
-	version="0.1.6"
+	version="0.1.7"
 	etat="dev"
 	compatibilite="[3.2.5;3.3.*]"
 	logo="prive/themes/spip/images/equipes-64.png"
 	documentation=""
-	schema="1.0.1" 
+	schema="1.0.2" 
 >
 	<!--
 		Paquet généré le 2019-09-26 11:06:56
@@ -29,6 +29,7 @@
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/equipes.php" /> 
 	<pipeline nom="declarer_tables_interfaces" inclure="base/equipes.php" /> 
 	<pipeline nom="affiche_enfants" inclure="equipes_pipelines.php" /> 
+	<pipeline nom="affiche_droite" inclure="equipes_pipelines.php" /> 
 	<pipeline nom="boite_infos" inclure="equipes_pipelines.php" /> 
 	<pipeline nom="objet_compte_enfants" inclure="equipes_pipelines.php" /> 
 	<pipeline nom="optimiser_base_disparus" inclure="equipes_pipelines.php" /> 
