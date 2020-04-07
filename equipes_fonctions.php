@@ -35,7 +35,7 @@ function remove_whitespace($text) {
  * 
  * @param int id_rubrique
  *		possibilité de forunir l'id de la rubrique : liste des équipes de cette rubrique uniquement
- *  	[(#SAISIE{selection, categorie, datas=[(#ID_RUBRIQUE|equipes_liste_equipes)]})]
+ *  	[(#SAISIE{selection, categorie, datas=[(#ENV{id_rubrique, 0}|equipes_liste_equipes)]})]
  * @param string defaut
  *		Valeur par defaut du tableau d'equipe : permetter d'initialiser
  *  	[(#SAISIE{selection, categorie, datas=[(#REM|equipes_liste_equipes{Veuillez choisir une équipe})]})]
