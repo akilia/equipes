@@ -1,7 +1,7 @@
 <paquet
 	prefix="equipes"
 	categorie="divers"
-	version="0.1.7"
+	version="0.1.8"
 	etat="dev"
 	compatibilite="[3.2.5;3.3.*]"
 	logo="prive/themes/spip/images/equipes-64.png"
@@ -16,6 +16,8 @@
 	<!-- Gestion d’équipes et de ses membres (ou joueurs, consultants, etc.) -->
 
 	<auteur lien='https://www.akilia.net'>Pierre Miquel</auteur>
+	<credit>Logo illustre by Julien Moya</credit>
+	<credit>Picto Equipe (Team) by By priyanka, IN</credit>
 
 	<licence>GNU/GPL</licence>
 	<necessite nom="saisies" compatibilite="[3.23.2;]" /> 
