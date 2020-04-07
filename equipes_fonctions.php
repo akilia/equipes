@@ -24,20 +24,21 @@ function remove_whitespace($text) {
 	return str_replace(' ', '', $text);
 }
 
-
 /**
  * Retourner le tableau id_equipe/nom des equipes existantes
  * Utile pour les #SAISIE -> datas
  *
  * @example
- *  [(#SAISIE{checkbox, id_equipe, Choisir une case à cocher, datas=[(#VAL{4}|equipes_liste_equipes)]})]
- *  [(#SAISIE{radio, categorie, datas=[(#VAL{1}|equipes_liste_equipes{valeur_par_defaut})]})]
- *  [(#SAISIE{selection, categorie, datas=[(#VAL{1}|equipes_liste_equipes{valeur_par_defaut})]})]
+ *  [(#SAISIE{checkbox, id_equipe, Choisir une case à cocher, datas=[(#REM|equipes_liste_equipes)]})]
+ *  [(#SAISIE{radio, categorie, datas=[(#REM|equipes_liste_equipes)]})]
+ *  [(#SAISIE{selection, categorie, datas=[(#REM|equipes_liste_equipes)]})]
  * 
  * @param int id_rubrique
- *		ID de la rubrique de la liste des équipes à récupérer
+ *		possibilité de forunir l'id de la rubrique : liste des équipes de cette rubrique uniquement
+ *  	[(#SAISIE{selection, categorie, datas=[(#ID_RUBRIQUE|equipes_liste_equipes)]})]
  * @param string defaut
- *		Valeur par defaut du tableau d'equipe
+ *		Valeur par defaut du tableau d'equipe : permetter d'initialiser
+ *  	[(#SAISIE{selection, categorie, datas=[(#REM|equipes_liste_equipes{Veuillez choisir une équipe})]})]
  *
  * @return array
  *		array(id_equipe -> nom, etc.)
@@ -49,7 +50,12 @@ function equipes_liste_equipes($id_rubrique = 0, $defaut = null) {
 		$liste_equipes = array('' => $defaut);
 	}
 
-	$res = sql_allfetsel('id_equipe, nom', 'spip_equipes');
+	if ($id_rubrique > 0) {
+		$res = sql_allfetsel('id_equipe, nom', 'spip_equipes', 'id_rubrique='.intval($id_rubrique));
+	} else {
+		$res = sql_allfetsel('id_equipe, nom', 'spip_equipes');
+	}
+	
 	foreach ($res as $value) {
 		$add_equipes[$value['id_equipe']] = $value['nom'];
 	}

@@ -70,6 +70,11 @@ function formulaires_editer_membre_charger_dist($id_membre = 'new', $id_equipe =
 	if (!$valeurs['id_equipe']) {
 		$valeurs['id_equipe'] = $id_equipe;
 	}
+
+	if ($id_rubrique = sql_getfetsel('id_rubrique', 'spip_equipes', 'id_equipe='.intval($id_equipe))) {
+		$valeurs['id_rubrique'] = $id_rubrique;
+	}
+
 	return $valeurs;
 }
 

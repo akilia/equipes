@@ -14,7 +14,7 @@
 
 			[(#SAISIE{input, nom, obligatoire=oui, label=<:membre:champ_nom_label:>})]
 
-			[(#SAISIE{selection, id_equipe, obligatoire=oui, label=<:equipe:titre_equipe:>, datas=[(#REM|equipes_liste_equipes)]})]
+			[(#SAISIE{selection, id_equipe, obligatoire=oui, label=<:equipe:titre_equipe:>, datas=[(#ENV{id_rubrique, 0}|equipes_liste_equipes)]})]
 
 			[(#SAISIE{textarea, fonction, label=<:membre:champ_fonction_label:>, class=inserer_barre_forum, rows=3})]
 
