@@ -1,8 +1,6 @@
-[(#AUTORISER{voir,membre,#ID_MEMBRE}|sinon_interdire_acces)]
 #BOITE_OUVRIR{#CHEMIN_IMAGE{membre-24.png}|balise_img{'',cadre-icone}|concat{Liaison fiche membre},'simple','titrem'}
-<B_fiche_membre>
 <BOUCLE_fiche_membre(MEMBRES){id_membre}{tous}>
-	<a href="#URL_ECRIRE{membre, id_membre=#ID_MEMBRE}">#PRENOM #NOM (#STATUT)</a>
+	<a href="#URL_ECRIRE{membre, id_membre=#ID_MEMBRE}">#PRENOM #NOM</a>
 </BOUCLE_fiche_membre>
 Aucune fiche membre
 <//B_fiche_membre>
